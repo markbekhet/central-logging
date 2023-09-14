@@ -1,8 +1,10 @@
 syntax = "proto3";
-package logging;
-import "google/protobuf/empty.proto";
 
-option go_package = "./proto";
+option go_package = "./log";
+
+service Logger {
+    rpc Send (HTTPLog) returns (LogRes){};
+}
 
 message HTTPLog{
     int32 statusCode = 1;
@@ -16,8 +18,6 @@ message HTTPLog{
     Date date = 4;
 }
 
-
-
-service Logger {
-    rpc send (HTTPLog) returns (google.protobuf.Empty);
+message LogRes{
+    int32 status = 1;
 }
