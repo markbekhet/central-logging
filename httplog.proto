@@ -1,0 +1,23 @@
+syntax = "proto3";
+package logging;
+import "google/protobuf/empty.proto";
+
+option go_package = "./proto";
+
+message HTTPLog{
+    int32 statusCode = 1;
+    string userIP = 2;
+    string serverIP = 3;
+    message Date{
+        int32 day = 1;
+        int32 month = 2;
+        int32 year = 3;
+    }
+    Date date = 4;
+}
+
+
+
+service Logger {
+    rpc send (HTTPLog) returns (google.protobuf.Empty);
+}
