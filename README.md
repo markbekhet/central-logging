@@ -8,3 +8,4 @@ To compile the messages of .proto file:
 
 To compile the services of .proto file:
 	protoc --go-grpc_out=logging-server httplog.proto
+	protoc --go-grpc_out=http-server httplog.proto

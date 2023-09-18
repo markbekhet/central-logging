@@ -9,11 +9,16 @@ service Logger {
 message HTTPLog{
     int32 statusCode = 1;
     string userIP = 2;
-    string serverIP = 3;
+    string serverHost = 3;
     message Date{
         int32 day = 1;
         int32 month = 2;
         int32 year = 3;
+        int32 hour = 4;
+        int32 minute = 5;
+        int32 second = 6;
+        int64 nano = 7;
+
     }
     Date date = 4;
 }

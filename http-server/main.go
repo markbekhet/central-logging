@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	pb "github.com/markbekhet/central-logging/http-server/log"
@@ -25,14 +26,19 @@ func main() {
 		fmt.Println(r.RemoteAddr)
 		if r.Method == http.MethodGet {
 			w.Write([]byte("Hello"))
+			hostname, _ := os.Hostname()
 			c.Send(context.Background(), &pb.HTTPLog{
 				StatusCode: http.StatusOK,
-				ServerIP:   r.Host,
+				ServerHost: hostname,
 				UserIP:     r.RemoteAddr,
 				Date: &pb.HTTPLog_Date{
-					Day:   int32(time.Day()),
-					Month: int32(time.Month()),
-					Year:  int32(time.Year()),
+					Day:    int32(time.Day()),
+					Month:  int32(time.Month()),
+					Year:   int32(time.Year()),
+					Hour:   int32(time.Hour()),
+					Minute: int32(time.Minute()),
+					Second: int32(time.Second()),
+					Nano:   int64(time.Nanosecond()),
 				},
 			})
 		}

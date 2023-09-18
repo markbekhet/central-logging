@@ -7,6 +7,8 @@ require (
 	google.golang.org/protobuf v1.31.0 // direct
 )
 
+require github.com/lib/pq v1.10.9
+
 require (
 	github.com/golang/protobuf v1.5.3 // indirect
 	golang.org/x/net v0.12.0 // indirect
