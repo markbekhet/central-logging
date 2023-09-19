@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grpc-configmap
+data:
+  grpc-addr: logging-service
+  postgres-addr: postgres-service
