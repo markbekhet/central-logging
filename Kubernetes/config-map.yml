@@ -5,3 +5,4 @@ metadata:
 data:
   grpc-addr: logging-service
   postgres-addr: postgres-service
+  grpc-port: '5051'
