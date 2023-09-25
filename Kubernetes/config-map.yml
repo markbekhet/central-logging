@@ -4,5 +4,5 @@ metadata:
   name: grpc-configmap
 data:
   grpc-addr: logging-service
-  postgres-addr: postgres-service
+  postgres-addr: postgres
   grpc-port: '5051'
