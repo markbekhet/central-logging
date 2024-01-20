@@ -4,6 +4,7 @@ httpServer:
   image: markbekhet/go-grpc:http-server-1.1
   port0Name: http
   port0: 8080
+  serviceName: http-server-service
 
 configMap:
   name: grpc-configmap
