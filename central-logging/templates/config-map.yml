@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configMap.name }}
+data:
+  grpc-addr: {{ .Values.configMap.grpcAddr.value }}
+  postgres-addr: {{ .Values.configMap.postgresAddr.value }}
+  grpc-port: '5051'

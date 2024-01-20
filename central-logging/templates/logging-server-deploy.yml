@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.loggingServer.name }}
+  labels:
+    app: {{ .Values.loggingServer.name }}
+spec:
+  replicas: {{ .Values.loggingServer.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.loggingServer.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.loggingServer.name }}
+    spec:
+      containers:
+      - name: {{ .Values.loggingServer.name }}
+        image: {{ .Values.loggingServer.image }}
+        ports:
+        - name: {{ .Values.loggingServer.port0Name }}
+          containerPort: {{ .Values.loggingServer.port0 }}
+        env:
+        - name: dbHost
+          valueFrom: 
+            configMapKeyRef:
+              name: {{ .Values.configMap.name }}
+              key: {{ .Values.configMap.postgresAddr.key }}
+        - name: dbUser
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.secret.name }}
+              key: {{ .Values.secret.postgresUser.key }}
+        - name: dbPassword
+          valueFrom: 
+            secretKeyRef:
+              name: {{ .Values.secret.name }}
+              key: {{ .Values.secret.postgresPassword.key }}

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.httpServer.name }}
+  labels:
+    app: {{ .Values.httpServer.name }}
+spec:
+  replicas: {{ .Values.httpServer.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.httpServer.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.httpServer.name }}
+    spec:
+      containers:
+      - name: {{ .Values.httpServer.name }}
+        image: {{ .Values.httpServer.image }}
+        ports:
+        - name: {{ .Values.httpServer.port0Name }}
+          containerPort: {{ .Values.httpServer.port0 }}
+        env:
+        - name: grpcAddr
+          valueFrom: 
+            configMapKeyRef:
+              name: {{ .Values.configMap.name }}
+              key: {{ .Values.configMap.grpcAddr.key }}
+        - name: grpcPort
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Values.configMap.name }}
+              key: {{ .Values.configMap.grpcPort.key }}
