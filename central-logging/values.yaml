@@ -35,13 +35,14 @@ loggingServer:
   port0: 5051
 
 postgres:
-  name: psotgres
+  name: postgres
   port: 5432
   image: postgres:latest
   replicaCount: 3
-  pvcName: postgres-data
-
-postgresPvc:
-  name: postgres-pvc
-  access: ReadWriteOnce
-  storage: 1Gi
+  pvc:
+    name: postgres-pvc
+  pv:
+    name: postgres-pv
+    access: ReadWriteOnce
+    capacity: 1Gi
+    hostPath: /home/mark/postgres

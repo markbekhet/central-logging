@@ -25,3 +25,11 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.secret.name }}
                   key: {{ .Values.secret.postgresPassword.key }}
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/psql/data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Values.postgres.pvc.name }}
+
