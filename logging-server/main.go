@@ -7,7 +7,7 @@ import (
 	"net"
 	"os"
 
-	pb "github.com/markbekhet/central-logging/logging-server/log"
+	pb "github.com/markbekhet/central-logging/log"
 	"google.golang.org/grpc"
 )
 

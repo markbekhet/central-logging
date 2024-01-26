@@ -6,7 +6,7 @@ import (
 	"log"
 
 	_ "github.com/lib/pq"
-	pb "github.com/markbekhet/central-logging/logging-server/log"
+	pb "github.com/markbekhet/central-logging/log"
 )
 
 var db = &sql.DB{}
