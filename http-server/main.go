@@ -8,7 +8,7 @@ import (
 	"os"
 	"time"
 
-	pb "github.com/markbekhet/central-logging/http-server/log"
+	pb "github.com/markbekhet/central-logging/log"
 	"google.golang.org/grpc"
 )
 
@@ -19,6 +19,7 @@ func main() {
 	conn, err := grpc.Dial(addr, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
+		os.Exit(-1)
 	}
 	defer conn.Close()
 	c := pb.NewLoggerClient(conn)

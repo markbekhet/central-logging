@@ -1,0 +1,20 @@
+FROM golang:latest
+
+RUN useradd mark
+
+RUN mkdir -p /home/mark/go/src/github.com/markbekhet/central-logging/http-server
+RUN export GOPATH=/home/mark/go/
+
+RUN mkdir -p /home/mark/go/src/github.com/markbekhet/central-logging/log
+COPY log /home/mark/go/src/github.com/markbekhet/central-logging/log
+
+WORKDIR /home/mark/go/src/github.com/markbekhet/central-logging/http-server
+COPY http-server/go.mod http-server/go.sum ./
+RUN go mod download && go mod verify
+COPY http-server .
+
+RUN CGO_ENABLED=0 GOOS=linux go build -o http-server
+
+EXPOSE 8080
+
+CMD [ "./http-server" ]

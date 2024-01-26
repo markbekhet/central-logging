@@ -1,12 +1,10 @@
-module github.com/markbekhet/central-logging/http-server
+module markbekehet/central-logging/log
 
 go 1.21.1
 
-replace github.com/markbekhet/central-logging/log => ../log
-
 require (
-	github.com/markbekhet/central-logging/log v0.0.0-00010101000000-000000000000
 	google.golang.org/grpc v1.61.0
+	google.golang.org/protobuf v1.32.0
 )
 
 require (
@@ -15,5 +13,4 @@ require (
 	golang.org/x/sys v0.14.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20231106174013-bbf56f31fb17 // indirect
-	google.golang.org/protobuf v1.32.0 // indirect
 )

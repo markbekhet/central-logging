@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "logging-server",
+		},
+		{
+			"path": "http-server",
+		},
+		{
+			"path": "log"
+		},
+{
+	"path": "central-logging"
+}
+	]
+}
