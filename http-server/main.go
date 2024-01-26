@@ -14,9 +14,7 @@ import (
 
 func main() {
 	grpcAddr := os.Getenv("grpcAddr")
-	grpcPort := os.Getenv("grpcPort")
-	addr := grpcAddr + ":" + grpcPort
-	conn, err := grpc.Dial(addr, grpc.WithInsecure())
+	conn, err := grpc.Dial(grpcAddr, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 		os.Exit(-1)

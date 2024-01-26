@@ -17,6 +17,7 @@ spec:
       containers:
       - name: {{ .Values.httpServer.name }}
         image: {{ .Values.httpServer.image }}
+        imagePullPolicy: IfNotPresent
         ports:
         - name: {{ .Values.httpServer.port0Name }}
           containerPort: {{ .Values.httpServer.port0 }}
@@ -26,8 +27,3 @@ spec:
             configMapKeyRef:
               name: {{ .Values.configMap.name }}
               key: {{ .Values.configMap.grpcAddr.key }}
-        - name: grpcPort
-          valueFrom:
-            configMapKeyRef:
-              name: {{ .Values.configMap.name }}
-              key: {{ .Values.configMap.grpcPort.key }}

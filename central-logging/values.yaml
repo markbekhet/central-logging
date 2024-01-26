@@ -1,7 +1,7 @@
 httpServer:
   name: http-server
   replicaCount: 3
-  image: markbekhet/go-grpc:http-server-1.1
+  image: http-server
   port0Name: http
   port0: 8080
   serviceName: http-server-service
@@ -10,13 +10,10 @@ configMap:
   name: grpc-configmap
   grpcAddr:
     key: grpc-addr
-    value: logging-service
+    value: /logging
   postgresAddr:
     key: postgres-addr
     value: postgres
-  grpcPort:
-    key: grpc-port
-    value: '5051'
 
 secret:
   name: postgres-secret
@@ -30,15 +27,16 @@ secret:
 loggingServer:
   name: logging-server
   replicaCount: 3
-  image: markbekhet/go-grpc:lo-server-1.0
+  image: logging
   port0Name: grpc-port-name
   port0: 5051
+  serviceName: logging-service
 
 postgres:
   name: postgres
   port: 5432
   image: postgres:latest
-  replicaCount: 3
+  replicaCount: 1
   pvc:
     name: postgres-pvc
   pv:
@@ -46,3 +44,4 @@ postgres:
     access: ReadWriteOnce
     capacity: 1Gi
     hostPath: /home/mark/postgres
+  serviceName: postgres

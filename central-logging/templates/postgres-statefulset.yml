@@ -6,6 +6,7 @@ metadata:
     app: {{ .Values.postgres.name }}
 spec:
   replicas: {{ .Values.postgres.replicaCount }}
+  serviceName: {{ .Values.postgres.serviceName }}
   selector:
     matchLabels:
       app: {{ .Values.postgres.name }}
@@ -17,6 +18,7 @@ spec:
       containers:
         - name: {{ .Values.postgres.name }}
           image: {{ .Values.postgres.image }}
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: {{ .Values.postgres.port }}
           env:

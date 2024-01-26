@@ -21,8 +21,8 @@ func ConnectDB(host, user, password, dbname string, port int) {
 	}
 }
 
-func CreateHTTPLogTable() {
-	db.Exec(`
+func CreateHTTPLogTable() error {
+	_, err := db.Exec(`
 	CREATE TABLE IF NOT EXISTS HTTPLOG(
 		id SERIAL PRIMARY KEY,
 		statusCode INT,
@@ -36,6 +36,7 @@ func CreateHTTPLogTable() {
 		second INT,
 		nano INT
 	)`)
+	return err
 }
 
 func AddHTTPLOG(log *pb.HTTPLog) error {

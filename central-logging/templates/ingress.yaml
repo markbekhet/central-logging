@@ -7,8 +7,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: "*.hellodevops.net"
-    http:
+  - http:
       paths:
       - path: /http
         pathType: Prefix
@@ -17,3 +16,18 @@ spec:
             name: {{ .Values.httpServer.serviceName }}
             port:
               number: {{ .Values.httpServer.port0 }}
+      - path: /logging
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Values.loggingServer.serviceName }}
+            port:
+              number: {{ .Values.loggingServer.port0 }}
+      - path: /postgres
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Values.postgres.serviceName }}
+            port:
+              number: {{ .Values.postgres.port }}
+        

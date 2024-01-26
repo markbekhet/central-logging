@@ -31,7 +31,10 @@ func main() {
 	fmt.Println(os.Environ())
 	ConnectDB(os.Getenv("dbHost"), os.Getenv("dbUser"),
 		os.Getenv("dbPassword"), "postgres", 5432)
-	CreateHTTPLogTable()
+	err := CreateHTTPLogTable()
+	if err != nil {
+		os.Exit(-1)
+	}
 	defer CloseDB()
 	lis, err := net.Listen("tcp", port)
 	if err != nil {

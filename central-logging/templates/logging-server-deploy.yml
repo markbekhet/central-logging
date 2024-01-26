@@ -17,6 +17,7 @@ spec:
       containers:
       - name: {{ .Values.loggingServer.name }}
         image: {{ .Values.loggingServer.image }}
+        imagePullPolicy: IfNotPresent
         ports:
         - name: {{ .Values.loggingServer.port0Name }}
           containerPort: {{ .Values.loggingServer.port0 }}
